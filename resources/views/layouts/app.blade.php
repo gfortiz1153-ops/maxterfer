@@ -6,121 +6,126 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
- 
-    <title>@yield('titulo') | Kawasaki Motorcycles</title>
- 
+
+    <title>@yield('titulo') | TECNOLOGÍA SUREÑA</title>
+
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
- 
+
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         rel="stylesheet"
     >
- 
+
     <style>
         :root {
-            --cafe-oscuro: #0bd00b86;
-            --cafe: #000000;
-            --caramelo: #c8873a;
-            --crema: #fff7ed;
-            --texto: #2d201c;
+            --azul-oscuro: #0f172a;  /* Azul noche / marino */
+            --azul-primario: #0284c7;/* Azul tecnológico brillante */
+            --azul-medio: #0369a1;   /* Azul cobalto para hovers */
+            --azul-claro: #f0f9ff;   /* Fondo muy suave */
+            --azul-icono: #e0f2fe;   /* Contenedor de íconos */
+            --texto: #1e293b;        /* Texto gris oscuro profesional */
         }
- 
+
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-color: #fffaf5;
+            background-color: var(--azul-claro);
             color: var(--texto);
         }
- 
-        .navbar-cafe {
+
+        .navbar-tech {
             background: linear-gradient(
                 90deg,
-                var(--cafe-oscuro),
-                var(--cafe)
+                var(--azul-oscuro),
+                var(--azul-medio)
             );
         }
- 
+
         .navbar .nav-link {
             border-radius: 0.6rem;
             padding-left: 0.9rem !important;
             padding-right: 0.9rem !important;
+            transition: all 0.2s ease;
         }
- 
+
         .navbar .nav-link.active,
         .navbar .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.14);
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff !important;
         }
- 
-        .hero-cafe {
+
+        .hero-tech {
             background:
                 radial-gradient(
                     circle at top right,
-                    rgba(200, 135, 58, 0.35),
+                    rgba(2, 132, 199, 0.18),
                     transparent 40%
                 ),
-                linear-gradient(135deg, #fff7ed, #f5e2cd);
+                linear-gradient(135deg, #ffffff, #e0f2fe);
             border-radius: 1.5rem;
+            border: 1px solid #bae6fd;
         }
- 
-        .card-cafe {
+
+        .card-tech {
             border: 0;
             border-radius: 1.2rem;
+            background-color: #ffffff;
             transition: transform 0.25s ease,
                         box-shadow 0.25s ease;
         }
- 
-        .card-cafe:hover {
+
+        .card-tech:hover {
             transform: translateY(-5px);
-            box-shadow: 0 1rem 2rem rgba(62, 39, 35, 0.13);
+            box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.12);
         }
- 
-        .icono-cafe {
+
+        .icono-tech {
             width: 78px;
             height: 78px;
             display: grid;
             place-items: center;
             margin: 0 auto;
             border-radius: 50%;
-            background-color: #f8e5cf;
-            color: var(--cafe);
+            background-color: var(--azul-icono);
+            color: var(--azul-primario);
             font-size: 2rem;
         }
- 
-        .btn-cafe {
+
+        .btn-tech {
             color: white;
-            background-color: var(--cafe);
-            border-color: var(--cafe);
+            background-color: var(--azul-primario);
+            border-color: var(--azul-primario);
         }
- 
-        .btn-cafe:hover {
+
+        .btn-tech:hover {
             color: white;
-            background-color: var(--cafe-oscuro);
-            border-color: var(--cafe-oscuro);
+            background-color: var(--azul-medio);
+            border-color: var(--azul-medio);
         }
- 
+
         .titulo-seccion {
-            color: var(--cafe-oscuro);
+            color: var(--azul-oscuro);
         }
- 
+
         footer {
             margin-top: auto;
-            background-color: var(--cafe-oscuro);
+            background-color: var(--azul-oscuro);
         }
     </style>
 </head>
- 
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-cafe shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-tech shadow-sm">
         <div class="container py-2">
-            <a class="navbar-brand fw-bold" href="#">
-                
-                🏍️Kawasaki Motorcycles🏍️
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-cpu-fill text-info"></i>
+                TECNOLOGÍA SUREÑA
             </a>
- 
+
             <button
                 class="navbar-toggler"
                 type="button"
@@ -132,7 +137,7 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
- 
+
             <div class="collapse navbar-collapse" id="menuPrincipal">
                 <ul class="navbar-nav ms-auto gap-lg-1">
                     <li class="nav-item">
@@ -140,54 +145,71 @@
                             class="nav-link {{ request()->routeIs('inicio') ? 'active' : '' }}"
                             href="#"
                         >
-                            Inicio
+                            <i class="bi bi-house-door me-1"></i> Inicio
                         </a>
                     </li>
- 
+
                     <li class="nav-item">
                         <a
                             class="nav-link {{ request()->routeIs('menu') ? 'active' : '' }}"
                             href="{{ route('menu') }}"
                         >
-                            Menú
+                            <i class="bi bi-laptop me-1"></i> Catálogo
                         </a>
                     </li>
- 
+
                     <li class="nav-item">
                         <a
                             class="nav-link {{ request()->routeIs('nosotros') ? 'active' : '' }}"
-                            href="#"
+                            href="{{ route('Nosotros') }}"
                         >
-                            Nosotros
+                            <i class="bi bi-info-circle me-1"></i> Nosotros
                         </a>
                     </li>
- 
+
                     <li class="nav-item">
                         <a
                             class="nav-link {{ request()->routeIs('contacto') ? 'active' : '' }}"
-                            href="#"
+                            href="{{ route('Contacto') }}"
                         >
-                            Contacto
+                            <i class="bi bi-envelope me-1"></i> Contacto
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ request()->routeIs('clientes.index') ? 'active' : '' }}"
+                            href="{{ route('clientes.index') }}"
+                        >
+                            <i class="bi bi-people me-1"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ request()->routeIs('productos.*') ? 'active' : '' }}"
+                            href="{{ route('productos.index') }}"
+                        >
+                            <i class="bi bi-box-seam me-1"></i> Productos
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
- 
-    <main>
+
+    <main class="py-4">
         @yield('contenido')
     </main>
- 
+
     <footer class="text-white text-center py-4">
         <div class="container">
-            <p class="mb-1 fw-semibold">Kawasaki Motorcycles</p>
+            <p class="mb-1 fw-semibold">TECNOLOGÍA SUREÑA &copy; {{ date('Y') }}</p>
             <p class="mb-0 small text-white-50">
-                Laboratorio de vistas y rutas en Laravel 12
+                Soluciones Tecnológicas & Equipamiento
             </p>
         </div>
     </footer>
- 
+
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     ></script>

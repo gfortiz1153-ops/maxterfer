@@ -1,3 +1,8 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
+@extends('layouts.app')
+ 
+@section('titulo', 'Inicio')
+ 
+@section('contenido')
+
+@endsection
+
