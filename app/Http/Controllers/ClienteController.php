@@ -20,15 +20,15 @@ class ClienteController extends Controller
     {
         return view('clientes.create');
     }
-
+//funcion para guardar datos del formulario
     public function store(Request $request): RedirectResponse
     {
         $datos = $request->validate([
-            'nombre' => ['required', 'string', 'max:100'],
-            'correo' => ['required', 'email', 'max:150', 'unique:clientes,correo'],
-            'telefono' => ['required', 'string', 'max:20'],
-            'ciudad' => ['required', 'string', 'max:80'],
-            'mensaje' => ['required', 'string', 'max:1000'],
+            'nombre' => [ 'string', 'max:100'],
+            'correo' => ['email', 'max:150', 'unique:clientes,correo'],
+            'telefono' => [ 'string', 'max:20'],
+            'ciudad' => [ 'string', 'max:80'],
+            'mensaje' => [ 'string', 'max:1000'],
         ]);
 
         Cliente::create($datos);
@@ -37,4 +37,6 @@ class ClienteController extends Controller
             ->route('clientes.index')
             ->with('exito', 'Cliente registrado correctamente.');
     }
+
+
 }
